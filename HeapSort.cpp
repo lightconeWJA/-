@@ -64,10 +64,12 @@ void heapSort(vector<int> &heap, bool ascending){
     int len = heap.size();
     if (len == 0) return;
 
+    buildHeap(heap, len, ascending);
+
     for(int i = len - 1; i > 0; i--){
-        buildHeap(heap, len, ascending);
         swap(heap[0], heap[i]);
         len--;
+        heapify(heap, 0, len, ascending);
     }
 }
 
