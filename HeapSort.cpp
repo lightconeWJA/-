@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <random>
 
 using namespace std;
 
@@ -73,11 +74,28 @@ void heapSort(vector<int> &heap, bool ascending){
     }
 }
 
+void heapInsert(vector<int> &heap, int newnum, bool ascending){
+    heap.push_back(newnum);
+    heapify(heap, heap.size()-1, heap.size(), ascending);
+}
+
 int main(void){
-    vector<int> test = {4, 5, 8, 2, 3, 9, 7, 1};
-    heapSort(test, true);
-    for(int i = 0; i <= test.size(); i++)
-        cout<<test[i]<<' ';
-        cout<<endl;
+    // vector<int> test = {4, 5, 8, 2, 3, 9, 7, 1};
+    // heapSort(test, true);
+    // for(int i = 0; i <= test.size(); i++)
+    //     cout<<test[i]<<' ';
+    //     cout<<endl;
+    
+    vector<int>test = {};
+    default_random_engine e;
+    uniform_int_distribution<int> u(0, 100);
+    int r;
+    for(int i = 0; i < 10; i++){
+        r = u(e);
+        heapInsert(test, r, true);
+        cout<<"insert "<<r<<endl;
+        printHeap(test);
+    }
+    
     return 0;
 }
