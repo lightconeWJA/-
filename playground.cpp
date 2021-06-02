@@ -49,7 +49,7 @@ class UnionFind{
         for (int i = 0; i < parent.size(); i++) find(i);
         for (int i = 0; i < parent.size(); i++) parent_set.emplace(parent[i]);
 
-        return set.size();
+        return parent_set.size();
     }
 };
 
