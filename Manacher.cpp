@@ -38,7 +38,7 @@ vector<int> Manacher(const string& s) {
     int center = -1;
 
     // 对加上 # 的字符串进行遍历
-    for (p = 0; p < s.size(); ++p) {
+    for (p = 0; p < addedsharp_s.size(); ++p) {
         // 目前遍历的位置超过了最右回文右边界
         // 采用普遍的中心扩展法
         if (p > right_edge) {
@@ -75,6 +75,7 @@ vector<int> Manacher(const string& s) {
                 center = p;
                 int r = right_edge - p;
                 radius[p] = r + 1;
+                r++;
                 while (center - r >=0 && center + r < addedsharp_s.size()) {
                     if (addedsharp_s[center - r] == addedsharp_s[center + r]) {
                         ++radius[p];
@@ -90,7 +91,13 @@ vector<int> Manacher(const string& s) {
 }
 
 int main(void) {
-    string a = "asdf";
+    string a = "acbbcbds";
+    vector<int> res = Manacher(a);
+
+    for (int& i : res) {
+        cout << i << " ";
+    }
+    cout<<endl;
     
     return 0;
 }
